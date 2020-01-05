@@ -1,0 +1,38 @@
+service: alexa-skill-f4
+
+plugins:
+  - serverless-webpack
+  - serverless-prune-plugin
+  - serverless-layers
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  deploymentBucket: alexa-serverless-bucket
+  environment:
+    IS_REMOTE: true
+    REGION: us-east-1
+    STAGE: dev
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:*
+      Resource: "*"
+
+custom:
+  webpack:
+    includeModules: false
+    packager: 'yarn'
+    webpackConfig: ./webpack.dev.config.js
+  prune:
+    automatic: true
+    number: 1
+  serverless-layers:
+    packageManager: yarn
+
+functions:
+  alexaHandler:
+    handler: index.handler
+    events:
+      - alexaSkill: amzn1.ask.skill.52f1b792-8b6f-4a82-a72f-5cd090082843

@@ -1,0 +1,36 @@
+{
+  "name": "alexa-skill-template",
+  "version": "0.0.1",
+  "description": "Serverless backend template for projects using Typescript",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "yarn install && STAGE=dev yarn run sls deploy -s dev",
+    "start": "STAGE=dev yarn run merge-config local && yarn run sls offline -s dev",
+    "sls": "node --max-old-space-size=4096 node_modules/serverless/bin/serverless"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.7.0",
+    "ask-sdk-model": "^1.25.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/henriquevguisasola/drivee-backend"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.31",
+    "@types/aws-sdk": "2.7.0",
+    "aws-sdk": "2.512.0",
+    "serverless": "1.50.0",
+    "serverless-layers": "1.4.1",
+    "serverless-offline": "5.10.1",
+    "serverless-prune-plugin": "1.4.0",
+    "serverless-webpack": "5.3.1",
+    "ts-loader": "6.0.4",
+    "tslint": "5.18.0",
+    "typescript": "3.5.3",
+    "webpack": "4.39.2",
+    "webpack-node-externals": "1.7.2"
+  },
+  "author": "Drivee",
+  "license": "MIT"
+}

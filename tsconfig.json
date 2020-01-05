@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "esnext",
+      "es2015",
+      "es6",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+  },
+  "exclude": [
+    "./node_modules"
+  ]
+}
