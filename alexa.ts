@@ -1,11 +1,17 @@
-import { getRequestType, getIntentName, SkillBuilders } from 'ask-sdk-core'
+import { getRequestType, getIntentName, SkillBuilders, getSlotValue } from 'ask-sdk-core'
+import { handleIntent } from './main'
+import { LAUCH_MESSAGE, HELP_MESSAGE, ERROR_MESSAGE, FALLBACK_MESSAGE, CANCEL_MESSAGE } from './messages'
 
+/* *
+ * LaunchIntent triggers when a customer says the keyword to start your skill,
+ * used as a welcome message to your user
+ * */
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest'
     },
     handle(handlerInput) {
-        const speakOutput = 'Olá! Como eu poderia ajudá-lo?'
+        const speakOutput = LAUCH_MESSAGE
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -14,13 +20,31 @@ const LaunchRequestHandler = {
     },
 }
 
+const FutureIntentHandler = {
+    canHandle(handlerInput) {
+        return getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && getIntentName(handlerInput.requestEnvelope) === 'futureIntent'
+    },
+    handle: async (handlerInput) => {
+        const speakOutput = handleIntent(handlerInput)
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .getResponse()
+    },
+}
+
+/* *
+ * HelpIntent triggers when a customer says the keyword to request alexa help,
+ * used to tell your user what he can do with your skill.
+ * */
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent'
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello!'
+        const speakOutput = HELP_MESSAGE
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -29,6 +53,10 @@ const HelpIntentHandler = {
     },
 }
 
+/* *
+ * CancelIntent triggers when a customer says the keyword to stop the skill execution
+ * This handler can be safely added but will be ingnored in locales that do not support it yet
+ * */
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
         return getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -36,7 +64,7 @@ const CancelAndStopIntentHandler = {
                 || getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent')
     },
     handle(handlerInput) {
-        const speakOutput = 'Obrigado por usar esse sistema!'
+        const speakOutput = CANCEL_MESSAGE
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -54,7 +82,7 @@ const FallbackIntentHandler = {
             && getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent'
     },
     handle(handlerInput) {
-        const speakOutput = 'Não entendi o que você quis dizer, pode repetir?'
+        const speakOutput = FALLBACK_MESSAGE
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -105,7 +133,7 @@ const ErrorHandler = {
         return true
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Não consegui realizar seu pedido, pode tentar de novo?'
+        const speakOutput = ERROR_MESSAGE
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`)
 
         return handlerInput.responseBuilder
@@ -118,6 +146,7 @@ const ErrorHandler = {
 export const handler = SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        FutureIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,

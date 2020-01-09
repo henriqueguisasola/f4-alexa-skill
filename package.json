@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "ask-sdk-core": "^2.7.0",
-    "ask-sdk-model": "^1.25.1"
+    "ask-sdk-model": "^1.25.1",
+    "node-fetch": "^2.6.0"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.31",
     "@types/aws-sdk": "2.7.0",
+    "@types/node-fetch": "^2.5.4",
     "aws-sdk": "2.512.0",
     "serverless": "1.50.0",
     "serverless-layers": "1.4.1",

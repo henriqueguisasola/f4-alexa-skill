@@ -33,6 +33,6 @@ custom:
 
 functions:
   alexaHandler:
-    handler: index.handler
+    handler: alexa.handler
     events:
       - alexaSkill: amzn1.ask.skill.52f1b792-8b6f-4a82-a72f-5cd090082843
