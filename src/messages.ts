@@ -1,5 +1,5 @@
 export const LAUCH_MESSAGE = 'Olá! Como eu poderia ajudá-lo?'
 export const HELP_MESSAGE = 'Para iniciar o assistente, tente dizer que você tem uma dúvida'
-export const CANCEL_MESSAGE = 'Obrigado por usar o assistente de dúvidas da Future Four!'
+export const CANCEL_MESSAGE = 'Obrigado por usar o assistente de dúvidas!'
 export const FALLBACK_MESSAGE = 'Não entendi o que você quis dizer, pode repetir?'
 export const ERROR_MESSAGE = 'Não consegui realizar seu pedido, pode tentar de novo?'

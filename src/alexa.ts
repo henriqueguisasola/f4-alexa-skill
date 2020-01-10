@@ -1,4 +1,4 @@
-import { getRequestType, getIntentName, SkillBuilders, getSlotValue } from 'ask-sdk-core'
+import { getRequestType, getIntentName, SkillBuilders } from 'ask-sdk-core'
 import { handleIntent } from './main'
 import { LAUCH_MESSAGE, HELP_MESSAGE, ERROR_MESSAGE, FALLBACK_MESSAGE, CANCEL_MESSAGE } from './messages'
 
@@ -20,6 +20,9 @@ const LaunchRequestHandler = {
     },
 }
 
+/* *
+ * Código específico, nome da intent deve ser igual ao criado no console da alexa!
+ * */
 const FutureIntentHandler = {
     canHandle(handlerInput) {
         return getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
