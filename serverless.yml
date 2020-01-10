@@ -10,10 +10,7 @@ provider:
   runtime: nodejs12.x
   stage: dev
   deploymentBucket: alexa-serverless-bucket
-  environment:
-    IS_REMOTE: true
-    REGION: us-east-1
-    STAGE: dev
+  environment: ${self:custom.constants.ENV}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -30,9 +27,10 @@ custom:
     number: 1
   serverless-layers:
     packageManager: yarn
+  constants: ${file(./env.yml)}
 
 functions:
   alexaHandler:
-    handler: alexa.handler
+    handler: src/alexa.handler
     events:
-      - alexaSkill: amzn1.ask.skill.52f1b792-8b6f-4a82-a72f-5cd090082843
+      - alexaSkill: ${self:custom.constants.ALEXA_SKILL}
