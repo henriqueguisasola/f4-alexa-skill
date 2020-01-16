@@ -13,10 +13,6 @@
     "ask-sdk-model": "^1.25.1",
     "node-fetch": "^2.6.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/henriquevguisasola/drivee-backend"
-  },
   "devDependencies": {
     "@types/aws-lambda": "8.10.31",
     "@types/aws-sdk": "2.7.0",
@@ -33,6 +29,6 @@
     "webpack": "4.39.2",
     "webpack-node-externals": "1.7.2"
   },
-  "author": "Drivee",
+  "author": "Henrique Guisasola",
   "license": "MIT"
 }

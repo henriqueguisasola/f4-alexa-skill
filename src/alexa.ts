@@ -2,6 +2,8 @@ import { getRequestType, getIntentName, SkillBuilders } from 'ask-sdk-core'
 import { handleIntent } from './main'
 import { LAUCH_MESSAGE, HELP_MESSAGE, ERROR_MESSAGE, FALLBACK_MESSAGE, CANCEL_MESSAGE } from './messages'
 
+const INTENT_NAME = 'NOME_DA_MINHA_INTENT'
+
 /* *
  * LaunchIntent triggers when a customer says the keyword to start your skill,
  * used as a welcome message to your user
@@ -26,7 +28,7 @@ const LaunchRequestHandler = {
 const FutureIntentHandler = {
     canHandle(handlerInput) {
         return getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && getIntentName(handlerInput.requestEnvelope) === 'futureIntent'
+            && getIntentName(handlerInput.requestEnvelope) === INTENT_NAME
     },
     handle: async (handlerInput) => {
         const speakOutput = handleIntent(handlerInput)

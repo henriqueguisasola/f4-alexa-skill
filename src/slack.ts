@@ -11,7 +11,7 @@ export const sendMessageToSlack = async (message) => {
         }),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.TOKEN}`,
+          'Authorization': `Bearer ${process.env.SLACK_TOKEN}`,
         },
     })
 }

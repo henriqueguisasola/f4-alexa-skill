@@ -1,4 +1,4 @@
-service: alexa-skill-f4
+service: NOME_DA_MINHA_SKILL
 
 plugins:
   - serverless-webpack
@@ -9,13 +9,8 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: dev
-  deploymentBucket: alexa-serverless-bucket
+  deploymentBucket: NOME_DO_MEU_BUCKET
   environment: ${self:custom.constants.ENV}
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - dynamodb:*
-      Resource: "*"
 
 custom:
   webpack:
